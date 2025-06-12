@@ -11,7 +11,7 @@ class MainApp extends StatelessWidget {
       title: title,
       theme: ThemeData(
         useMaterial3: true,
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.green),
+        useSystemColors: true,
       ),
 
       home: MainPage(),

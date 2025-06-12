@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:multipliquendo/big_card.dart';
-import 'dart:math';
+import 'package:multipliquendo/game.dart';
+
+enum DIFFICULTS { easy, normal, hard }
 
 class MainPage extends StatefulWidget {
   const MainPage({super.key});
@@ -10,70 +11,41 @@ class MainPage extends StatefulWidget {
 }
 
 class _MainPageState extends State<MainPage> {
-  final Random _rand = Random();
-  int _num1 = 0;
-  int _num2 = 0;
-  int _trys = 0;
-  int _res = 0;
-
-  void _regenateNumbers() {
-    setState(() {
-      _num1 = _rand.nextInt(9);
-      _num2 = _rand.nextInt(9);
-      _res = (_num1 * _num2);
-    });
-  }
-
-  void _opensnackbar(String title) {
-    setState(() {
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(
-          content: Text(
-            title,
-            style: Theme.of(context).textTheme.headlineSmall!.copyWith(
-              color: Theme.of(context).colorScheme.onPrimary,
-              fontWeight: FontWeight.bold,
-            ),
-          ),
-
-          duration: Duration(seconds: 2),
-          backgroundColor: Theme.of(context).colorScheme.primary,
-        ),
-      );
-    });
-  }
-
-  void compareRes(String value) {
-    if (value == _res.toString()) {
-      _opensnackbar("¡Correcto!");
-      _regenateNumbers();
-      setState(() {
-        _trys = 0;
-      });
-    } else {
-      _opensnackbar("Incorrecto...");
-      setState(() {
-        _trys++;
-      });
-    }
-  }
-
-  @override
-  void initState() {
-    _regenateNumbers();
-    super.initState();
+  void _startGame(DIFFICULTS diff){
+    Navigator.of(context).push(
+      MaterialPageRoute(builder: (context) => GamePage(difficult: diff))
+    );
   }
 
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
-    final styletext = theme.textTheme.headlineLarge!.copyWith(
+
+    var textNormal = theme.textTheme.headlineSmall!.copyWith(
       color: theme.colorScheme.primary,
     );
 
+    var textButton = theme.textTheme.headlineSmall!.copyWith(
+      color: theme.colorScheme.onPrimary,
+      fontWeight: FontWeight.bold,
+    );
+
+    var textTitle = theme.textTheme.headlineMedium!.copyWith(
+      color: theme.colorScheme.onPrimary,
+      fontWeight: FontWeight.bold
+    );
+
+    var containersTheme = BoxDecoration(
+      color: theme.colorScheme.surface,
+      borderRadius: BorderRadius.circular(10),
+    );
+
+
     return Scaffold(
       appBar: AppBar(
+        backgroundColor: theme.colorScheme.primary,
         leading: Icon(Icons.add_sharp, color: theme.colorScheme.onPrimary),
+
         title: Text(
           "Multipliquendo",
           style: TextStyle(
@@ -81,52 +53,82 @@ class _MainPageState extends State<MainPage> {
             fontWeight: FontWeight.bold,
           ),
         ),
-        backgroundColor: theme.colorScheme.primary,
       ),
 
-      body: Container(
+      body: Padding(
         padding: const EdgeInsets.all(50),
-        alignment: Alignment.center,
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-          children: [
-            Column(
-              children: [
-                Text('Escribe la respuesta de:', style: styletext),
-                SizedBox(height: 20),
-                BigCard(num1: _num1, num2: _num2),
-              ],
-            ),
 
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  "Intentos: $_trys",
-                  style: TextStyle(
-                    color: theme.colorScheme.error,
-                    fontSize: 24,
-                    fontWeight: FontWeight.bold,
-                  ),
+        child: Container(
+          alignment: Alignment.center,
+          padding: EdgeInsets.all(40),
+
+          decoration: BoxDecoration(
+            color: theme.colorScheme.primary,
+            borderRadius: BorderRadius.circular(10),
+            border: Border.all(width: 10, color: Colors.black12),
+          ),
+
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.spaceAround,
+            crossAxisAlignment: CrossAxisAlignment.center,
+
+            children: [
+              Text(
+                "Dificultad",
+                style:  textTitle,
+              ),
+
+              Container(
+                decoration: containersTheme,
+                padding: EdgeInsets.all(30),
+
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.stretch,
+                  spacing: 20,
+
+                  children: [
+                    Text("Multiplicaciones del 1 al 10", style: textNormal),
+                    FilledButton(
+                      child: Text("Facil", style: textButton),
+                      onPressed: () => _startGame(DIFFICULTS.easy),
+                    ),
+                  ],
                 ),
+              ),
 
-                TextField(
-                  decoration: InputDecoration(
-                    label: Text("Escribe tu respuesta..."),
-                    filled: true,
-                  ),
-
-                  style: theme.textTheme.headlineLarge!.copyWith(
-                    color: theme.colorScheme.primary,
-                  ),
-
-                  onSubmitted: (value) => compareRes(value),
-                  textAlign: TextAlign.center,
-                  maxLength: 3,
+              Container(
+                decoration: containersTheme,
+                padding: EdgeInsets.all(30),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.stretch,
+                  spacing: 20,
+                  children: [
+                    Text("Mutiplicaciones del 10 al 100", style: textNormal),
+                    FilledButton(
+                      child: Text("Normal", style: textButton),
+                      onPressed: () => _startGame(DIFFICULTS.normal),
+                    ),
+                  ],
                 ),
-              ],
-            ),
-          ],
+              ),
+
+              Container(
+                decoration: containersTheme,
+                padding: EdgeInsets.all(30),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.stretch,
+                  spacing: 20,
+                  children: [
+                    Text("Mutiplicaciones del 100 al 1000", style: textNormal),
+                    FilledButton(
+                      child: Text("Dificil", style: textButton),
+                      onPressed: () => _startGame(DIFFICULTS.hard),
+                    ),
+                  ],
+                ),
+              ),
+            ],
+          ),
         ),
       ),
     );

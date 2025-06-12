@@ -12,13 +12,16 @@ class BigCard extends StatelessWidget {
 
     final style = theme.textTheme.displayLarge!.copyWith(
       color: theme.colorScheme.onPrimary,
+
     );
 
     return Card(
       color: theme.colorScheme.primary,
+      elevation: 6,
+
       child: Padding(
         padding: EdgeInsets.all(20),
-        child: Text("$num1 x $num2", style: style),
+        child: Text("$num1 x $num2", style: style, textAlign: TextAlign.center,),
       ),
     );
   }
