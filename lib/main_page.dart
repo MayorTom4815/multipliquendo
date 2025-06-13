@@ -44,7 +44,7 @@ class _MainPageState extends State<MainPage> {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: theme.colorScheme.primary,
-        leading: Icon(Icons.add_sharp, color: theme.colorScheme.onPrimary),
+        leading: Icon(Icons.close, color: theme.colorScheme.onPrimary),
 
         title: Text(
           "Multipliquendo",
@@ -56,11 +56,11 @@ class _MainPageState extends State<MainPage> {
       ),
 
       body: Padding(
-        padding: const EdgeInsets.all(50),
+        padding: const EdgeInsets.all(25),
 
         child: Container(
           alignment: Alignment.center,
-          padding: EdgeInsets.all(40),
+          padding: EdgeInsets.all(20),
 
           decoration: BoxDecoration(
             color: theme.colorScheme.primary,
@@ -69,12 +69,12 @@ class _MainPageState extends State<MainPage> {
           ),
 
           child: Column(
-            mainAxisAlignment: MainAxisAlignment.spaceAround,
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             crossAxisAlignment: CrossAxisAlignment.center,
 
             children: [
               Text(
-                "Dificultad",
+                "Elige tu dificultad",
                 style:  textTitle,
               ),
 
@@ -99,9 +99,11 @@ class _MainPageState extends State<MainPage> {
               Container(
                 decoration: containersTheme,
                 padding: EdgeInsets.all(30),
+
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.stretch,
                   spacing: 20,
+
                   children: [
                     Text("Mutiplicaciones del 10 al 100", style: textNormal),
                     FilledButton(
@@ -115,9 +117,11 @@ class _MainPageState extends State<MainPage> {
               Container(
                 decoration: containersTheme,
                 padding: EdgeInsets.all(30),
+
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.stretch,
                   spacing: 20,
+
                   children: [
                     Text("Mutiplicaciones del 100 al 1000", style: textNormal),
                     FilledButton(

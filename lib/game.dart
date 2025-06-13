@@ -72,21 +72,22 @@ class _GamePageState extends State<GamePage> {
     });
   }
 
-  void compareRes(String value) {
+  void _compareRes(String value) {
     if (value == _res.toString()) {
       _opensnackbar("¡Correcto!");
       _regenateNumbers();
       setState(() {
-        _score += 10;
         _combo++;
         _trys = 0;
+        _score += 10 * _combo;
       });
     } else {
       _opensnackbar("Incorrecto...");
       setState(() {
-        _score = _score > 0 ? _score - 2 : 0;
         _combo = 0;
         _trys++;
+        
+        _score = _score > 0 ? _score - 50 : 0;
       });
     }
   }
@@ -106,13 +107,22 @@ class _GamePageState extends State<GamePage> {
 
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: theme.colorScheme.primary,
-
+        backgroundColor: theme.colorScheme.primary, 
         leading: Icon(
-          Icons.add_sharp, 
-          color: theme.colorScheme.onPrimary
+          Icons.close, 
+          color: theme.colorScheme.onPrimary,
         ),
-        
+
+        actions: [
+          IconButton(
+            icon: Icon(Icons.door_back_door, 
+              color: theme.colorScheme.onPrimary,
+            ),
+
+            onPressed: () => _exitGame(), 
+          ),
+        ],
+
         title: Text(
           "Multipliquendo",
           style: TextStyle(
@@ -123,7 +133,7 @@ class _GamePageState extends State<GamePage> {
       ),
 
       body: Container(
-        padding: const EdgeInsets.all(50),
+        padding: const EdgeInsets.all(20),
 
         child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -131,6 +141,7 @@ class _GamePageState extends State<GamePage> {
 
           children: [
             Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Text(
                   "Puntuaje: $_score",
@@ -139,7 +150,7 @@ class _GamePageState extends State<GamePage> {
                     fontWeight: FontWeight.bold,
                     fontSize: 24,
                   ),
-                ),
+                )
               ],
             ),
 
@@ -190,22 +201,12 @@ class _GamePageState extends State<GamePage> {
                   style: theme.textTheme.headlineLarge!.copyWith(
                     color: theme.colorScheme.primary,
                   ),
-                  onSubmitted: (value) => compareRes(value),
+                  onSubmitted: (value) => _compareRes(value),
                   textAlign: TextAlign.center,
-                  maxLength: 3,
                   autofocus: true,
                 ),
 
-                SizedBox(height: 30,),
-                FilledButton(
-                  child: Text(
-                    "Salir del juego", 
-                    style: TextStyle(
-                      fontWeight: FontWeight.bold
-                    ),
-                  ),
-                  onPressed: () => _exitGame(), 
-                )
+                SizedBox(height: 10,),
               ],
             ),
           ],
