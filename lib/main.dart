@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:multipliquendo/main_page.dart';
+import 'package:multipliquendo/views/main_page.dart';
 
 class MainApp extends StatelessWidget {
   const MainApp({super.key});
@@ -8,8 +8,11 @@ class MainApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       title: title,
+      themeMode: ThemeMode.light,
       theme: ThemeData(
+        colorSchemeSeed: Colors.blue,
         useMaterial3: true,
         useSystemColors: true,
       ),
