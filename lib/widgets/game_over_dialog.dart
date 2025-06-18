@@ -50,7 +50,7 @@ class GameOverDialog extends StatelessWidget {
 
               children: [
                 TextButton(
-                  onPressed: () => trasitionPager(context, MainPage()),
+                  onPressed: () => transitionPager(context, MainPage()),
 
                   style: TextButton.styleFrom(
                     padding: EdgeInsets.all(20),
@@ -69,7 +69,7 @@ class GameOverDialog extends StatelessWidget {
                 ),
 
                 FilledButton.icon(
-                  onPressed: () => trasitionPager(context, GamePage()),
+                  onPressed: () => transitionPager(context, GamePage()),
 
                   style: FilledButton.styleFrom(
                     shape: RoundedRectangleBorder(

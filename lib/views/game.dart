@@ -14,18 +14,18 @@ class GamePage extends StatefulWidget {
 }
 
 class _GamePageState extends State<GamePage> {
-  final MultHandle _comparator = MultHandle();
+  final MultiplicateHandle _comparator = MultiplicateHandle();
   int _score = 0;
-  int _trys = 3;
+  int _tries = 3;
 
-  void _gameover() {
+  void _gameOver() {
     showDialog(
       context: context,
       builder: (context) => GameOverDialog(score: _score),
     );
   }
 
-  void showSnckBar(String title) {
+  void showSnackBar(String title) {
     ScaffoldMessenger.of(context).showSnackBar(
       SnackBar(
         backgroundColor: Colors.black38,
@@ -49,44 +49,44 @@ class _GamePageState extends State<GamePage> {
     int user = value.isNotEmpty ? int.parse(value) : 0;
 
     if (user == _comparator.res) {
-      playSound(effects["correct"]);
-      showSnckBar("¡Correcto!");
+      playSound(sfxDict["correct"]);
+      showSnackBar("¡Correcto!");
 
       setState(() {
         _score += 10;
-        _comparator.regenateNumbers();
+        _comparator.regenerateNumbers();
       });
     } else {
-      playSound(effects["error"]);
-      showSnckBar("Incorrecto...");
+      playSound(sfxDict["error"]);
+      showSnackBar("Incorrecto...");
 
       setState(() {
-        _trys--;
+        _tries--;
       });
     }
 
-    if (_trys == 0) {
+    if (_tries == 0) {
       bestScore = user > bestScore ? user : bestScore;
-      _gameover();
+      _gameOver();
     }
   }
 
   Color _getBGColor() {
     switch (currentDifficult) {
-      case DIFFICULTS.easy:
+      case DIFFICULT.easy:
         return Colors.green.shade100;
 
-      case DIFFICULTS.normal:
+      case DIFFICULT.normal:
         return Colors.yellow.shade100;
 
-      case DIFFICULTS.hard:
+      case DIFFICULT.hard:
         return Colors.red.shade100;
     }
   }
 
   @override
   void initState() {
-    _comparator.regenateNumbers();
+    _comparator.regenerateNumbers();
     super.initState();
   }
 
@@ -105,7 +105,7 @@ class _GamePageState extends State<GamePage> {
           spacing: 20,
 
           children: [
-            ScoreContainer(score: _score, trys: _trys),
+            ScoreContainer(score: _score, tries: _tries),
 
             Container(
               padding: const EdgeInsets.all(30),
@@ -176,26 +176,26 @@ class ExitButton extends DifficultButton {
   void startGame(BuildContext context) {
     super.startGame(context);
 
-    playSound(effects["button_pressed"]!);
-    trasitionPager(context, MainPage());
+    playSound(sfxDict["button_pressed"]!);
+    transitionPager(context, MainPage());
   }
 }
 
 class ScoreContainer extends StatelessWidget {
-  const ScoreContainer({super.key, required this.score, required this.trys});
+  const ScoreContainer({super.key, required this.score, required this.tries});
 
-  final int trys;
+  final int tries;
   final int score;
 
   Color _getBGColor() {
     switch (currentDifficult) {
-      case DIFFICULTS.easy:
+      case DIFFICULT.easy:
         return Colors.green.shade300;
 
-      case DIFFICULTS.normal:
+      case DIFFICULT.normal:
         return Colors.yellow.shade300;
 
-      case DIFFICULTS.hard:
+      case DIFFICULT.hard:
         return Colors.red.shade300;
     }
   }
@@ -219,7 +219,7 @@ class ScoreContainer extends StatelessWidget {
         children: [
           Column(
             children: [
-              Text("Puntuaje:", style: theme),
+              Text("Puntuación:", style: theme),
               Text("$score", style: theme),
             ],
           ),
@@ -231,7 +231,7 @@ class ScoreContainer extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.center,
 
                 children: [
-                  for (var i = 0; i < trys; i++)
+                  for (var i = 0; i < tries; i++)
                     Icon(Icons.cancel, color: Colors.black54),
                 ],
               ),

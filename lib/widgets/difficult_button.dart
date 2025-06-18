@@ -10,14 +10,14 @@ class DifficultButton extends StatefulWidget {
     required this.difficult,
   });
 
-  final DIFFICULTS difficult;
+  final DIFFICULT difficult;
   final String text;
 
   void startGame(BuildContext context) {
     currentDifficult = difficult;
 
-    playSound(effects["button_pressed"]!);
-    trasitionPager(context, GamePage());
+    playSound(sfxDict["button_pressed"]!);
+    transitionPager(context, GamePage());
   }
 
   @override
@@ -27,29 +27,28 @@ class DifficultButton extends StatefulWidget {
 class _DifficultButtonState extends State<DifficultButton> {
 
 
-
   Color _getDefaultColor() {
     switch (widget.difficult) {
-      case DIFFICULTS.easy:
+      case DIFFICULT.easy:
         return Colors.green.shade300;
 
-      case DIFFICULTS.normal:
+      case DIFFICULT.normal:
         return Colors.yellow.shade300;
 
-      case DIFFICULTS.hard:
+      case DIFFICULT.hard:
         return Colors.red.shade300;
     }
   }
 
   Color _getHoveredColor() {
     switch (widget.difficult) {
-      case DIFFICULTS.easy:
+      case DIFFICULT.easy:
         return Colors.green.shade400;
 
-      case DIFFICULTS.normal:
+      case DIFFICULT.normal:
         return Colors.yellow.shade400;
 
-      case DIFFICULTS.hard:
+      case DIFFICULT.hard:
         return Colors.red.shade400;
     }
   }
@@ -82,7 +81,7 @@ class _DifficultButtonState extends State<DifficultButton> {
       ),
 
       onPressed: () => widget.startGame(context),
-      onHover: (changed) => playSound(effects["hovered_button"]),
+      onHover: (changed) => playSound(sfxDict["hovered_button"]),
 
       child: Text(
         widget.text,

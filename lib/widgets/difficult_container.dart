@@ -5,19 +5,19 @@ import 'package:multipliquendo/widgets/difficult_button.dart';
 class DifficultContainer extends StatelessWidget{
   const DifficultContainer({super.key, required this.description, required this.titleButton, required this.difficult});
 
-  final DIFFICULTS difficult;
+  final DIFFICULT difficult;
   final String titleButton;
   final String description;
 
   Color _getColor(){
     switch(difficult) {
-      case DIFFICULTS.easy:
+      case DIFFICULT.easy:
         return Colors.green.shade100;
 
-      case DIFFICULTS.normal:
+      case DIFFICULT.normal:
         return Colors.yellow.shade100;
 
-      case DIFFICULTS.hard:
+      case DIFFICULT.hard:
         return Colors.red.shade100;
     }
   }

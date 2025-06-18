@@ -3,12 +3,12 @@ import 'package:flutter/material.dart';
 import 'package:audioplayers/audioplayers.dart';
 import 'dart:math';
 
-enum DIFFICULTS { easy, normal, hard }
+enum DIFFICULT { easy, normal, hard }
 String nameProjects = "Multipliquendo";
-DIFFICULTS currentDifficult = DIFFICULTS.easy;
+DIFFICULT currentDifficult = DIFFICULT.easy;
 int bestScore = 0;
 
-final Map effects = {
+final Map sfxDict = {
   "button_pressed" : "sfx/button_pressed.wav",
   "correct" : "sfx/correct.wav",
   "error" : "sfx/error.wav",
@@ -19,7 +19,7 @@ void playSound(String effect) async{
   await AudioPlayer().play(AssetSource(effect), mode: PlayerMode.lowLatency);
 }
 
-void trasitionPager(BuildContext context, page){
+void transitionPager(BuildContext context, page){
   Navigator.push(context, PageRouteBuilder(
     pageBuilder: (context, animation, secondaryAnimation) => page,
     
@@ -35,28 +35,27 @@ void trasitionPager(BuildContext context, page){
   ));
 }
 
-
-class MultHandle {
+class MultiplicateHandle {
   final Random _rand = Random();
   List<int> numbers = [];
   int res = 1;
 
-  void regenateNumbers() {
+  void regenerateNumbers() {
     numbers.clear();
     res = 1;
 
     switch (currentDifficult) {
-      case DIFFICULTS.easy:
+      case DIFFICULT.easy:
         for (var i = 0; i < 2; i++) {
           numbers.add(_rand.nextInt(10) + 1);
         }
 
-      case DIFFICULTS.normal:
+      case DIFFICULT.normal:
         for (var i = 0; i < 2; i++) {
           numbers.add(_rand.nextInt(100) + 10);
         }
 
-      case DIFFICULTS.hard:
+      case DIFFICULT.hard:
         for (var i = 0; i < 2; i++) {
           numbers.add(_rand.nextInt(100) + 1000);
         }

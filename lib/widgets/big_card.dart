@@ -14,13 +14,13 @@ class BigCard extends StatefulWidget {
 class _BigCardState extends State<BigCard> {
   Color _getColor() {
     switch (currentDifficult) {
-      case DIFFICULTS.easy:
+      case DIFFICULT.easy:
         return Colors.green.shade300;
 
-      case DIFFICULTS.normal:
+      case DIFFICULT.normal:
         return Colors.yellow.shade300;
 
-      case DIFFICULTS.hard:
+      case DIFFICULT.hard:
         return Colors.red.shade300;
     }
   }
@@ -37,7 +37,7 @@ class _BigCardState extends State<BigCard> {
       children: [
         Text(
           "Escribe la respuesta de:",
-          style: theme.textTheme.headlineLarge!.copyWith(color: Colors.black54),
+          style: theme.textTheme.headlineSmall!.copyWith(color: Colors.black54),
         ),
 
         Card(
@@ -49,7 +49,7 @@ class _BigCardState extends State<BigCard> {
 
             child: Text(
               "${widget.num1} x ${widget.num2}",
-              style: theme.textTheme.displayLarge!.copyWith(
+              style: theme.textTheme.displayMedium!.copyWith(
                 color: Colors.black54,
                 fontWeight: FontWeight.bold,
               ),

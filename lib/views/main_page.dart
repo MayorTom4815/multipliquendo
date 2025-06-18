@@ -13,6 +13,8 @@ class MainPage extends StatelessWidget {
       appBar: AppBar(
         backgroundColor: theme.colorScheme.primary,
 
+        leading: Text(""),
+
         title: Text(
           "Multipliquendo",
           style: TextStyle(
@@ -28,7 +30,7 @@ class MainPage extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.center,
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
 
-          children: [MainTitle(text: "Elije tu dififultad:  "), MainContainer()],
+          children: [MainTitle(text: "Elige tu dificultad:  "), MainContainer()],
         ),
       ),
     );
