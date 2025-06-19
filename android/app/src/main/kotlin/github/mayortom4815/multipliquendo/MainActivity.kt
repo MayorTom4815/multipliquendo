@@ -1,4 +1,4 @@
-package com.example.guess_game
+package github.mayortom4815.multipliquendo
 
 import io.flutter.embedding.android.FlutterActivity
 

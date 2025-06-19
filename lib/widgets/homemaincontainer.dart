@@ -53,20 +53,20 @@ class _MainContainerState extends State<MainContainer>
 
           children: [
             DifficultContainer(
-              description: "Multiplicaciones del 1 al 10",
-              titleButton: "Facíl",
+              description: "Multiplicaciones 1 al 10",
+              titleButton: "Fácil",
               difficult: DIFFICULT.easy,
             ),
 
             DifficultContainer(
-              description: "Multiplicaciones del 10 al 100",
+              description: "Multiplicaciones 10 al 100",
               titleButton: "Normal",
               difficult: DIFFICULT.normal,
             ),
 
             DifficultContainer(
-              description: "Multiplicaciones del 100 al 1000",
-              titleButton: "Dificíl",
+              description: "Multiplicaciones 100 al 1000",
+              titleButton: "Difícil",
               difficult: DIFFICULT.hard,
             ),
           ],

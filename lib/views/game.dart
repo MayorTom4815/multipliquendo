@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:multipliquendo/widgets/difficult_button.dart';
 
 import 'package:multipliquendo/widgets/game_over_dialog.dart';
 import 'package:multipliquendo/widgets/big_card.dart';
-import 'package:multipliquendo/views/main_page.dart';
 import 'package:multipliquendo/globals.dart';
 
 class GamePage extends StatefulWidget {
@@ -133,6 +131,8 @@ class _GamePageState extends State<GamePage> {
 
                     children: [
                       TextField(
+                        keyboardType: TextInputType.number,
+                        textInputAction: TextInputAction.done,
                         decoration: InputDecoration(
                           label: Text("Escribe tu respuesta..."),
                           filled: true,
@@ -149,33 +149,10 @@ class _GamePageState extends State<GamePage> {
                 ],
               ),
             ),
-
-            ExitButton(
-              text: "Salir de la partida",
-              difficult: currentDifficult,
-              context: context,
-            ),
           ],
         ),
       ),
     );
-  }
-}
-
-class ExitButton extends DifficultButton {
-  const ExitButton({
-    super.key,
-    required super.text,
-    required super.difficult,
-    required this.context,
-  });
-
-  final BuildContext context;
-
-  @override
-  void startGame(BuildContext context) {
-    super.startGame(context);
-    transitionPager(context, MainPage());
   }
 }
 

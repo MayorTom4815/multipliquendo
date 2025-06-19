@@ -19,8 +19,6 @@ void playSound(String effect) async{
 }
 
 void transitionPager(BuildContext context, page){
-  FocusManager.instance.primaryFocus?.unfocus();
-  
   Navigator.push(context, PageRouteBuilder(
     pageBuilder: (context, animation, secondaryAnimation) => page,
     
