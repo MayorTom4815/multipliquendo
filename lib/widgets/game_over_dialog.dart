@@ -24,32 +24,39 @@ class GameOverDialog extends StatelessWidget {
 
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
-          crossAxisAlignment: CrossAxisAlignment.stretch,
           mainAxisSize: MainAxisSize.min,
-          spacing: 20,
+          spacing: 30,
 
           children: [
             MainTitle(text: "Fin del juego..."),
-            Text(
-              "Tu mejor puntuaje: $bestScore",
-              style: theme.textTheme.headlineSmall!.copyWith(
-                color: theme.colorScheme.onPrimaryContainer,
-              ),
-            ),
 
-            Text(
-              "Puanteje final: $score",
-              style: theme.textTheme.headlineSmall!.copyWith(
-                color: theme.colorScheme.onPrimaryContainer,
-              ),
-            ),
-
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceAround,
-              spacing: 10,
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              spacing: 5,
 
               children: [
-                TextButton(
+                Text(
+                  "Tu mejor puntuación: $bestScore pts.",
+                  style: theme.textTheme.titleLarge!.copyWith(
+                    color: theme.colorScheme.onPrimaryContainer,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+                Text(
+                  "Puntuación final: $score pts.",
+                  style: theme.textTheme.titleLarge!.copyWith(
+                    color: theme.colorScheme.onPrimaryContainer,
+                  ),
+                ),
+              ],
+            ),
+
+            Column(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              spacing: 5,
+
+              children: [
+                TextButton.icon(
                   onPressed: () => transitionPager(context, MainPage()),
 
                   style: TextButton.styleFrom(
@@ -59,7 +66,9 @@ class GameOverDialog extends StatelessWidget {
                     ),
                   ),
 
-                  child: Text(
+                  icon: Icon(Icons.door_back_door),
+                  
+                  label: Text(
                     "Salir del juego",
 
                     style: theme.textTheme.titleSmall!.copyWith(

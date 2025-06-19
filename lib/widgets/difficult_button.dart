@@ -85,7 +85,7 @@ class _DifficultButtonState extends State<DifficultButton> {
 
       child: Text(
         widget.text,
-        style: theme.textTheme.headlineSmall!.copyWith(
+        style: theme.textTheme.titleLarge!.copyWith(
           color: Colors.black54,
           fontWeight: FontWeight.bold,
         ),

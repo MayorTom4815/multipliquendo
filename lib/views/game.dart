@@ -66,7 +66,7 @@ class _GamePageState extends State<GamePage> {
     }
 
     if (_tries == 0) {
-      bestScore = user > bestScore ? user : bestScore;
+      bestScore = user >= bestScore ? user : bestScore;
       _gameOver();
     }
   }
@@ -175,8 +175,6 @@ class ExitButton extends DifficultButton {
   @override
   void startGame(BuildContext context) {
     super.startGame(context);
-
-    playSound(sfxDict["button_pressed"]!);
     transitionPager(context, MainPage());
   }
 }
@@ -202,9 +200,9 @@ class ScoreContainer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    var theme = Theme.of(context).textTheme.titleLarge!.copyWith(
+    var theme = Theme.of(context).textTheme.titleMedium!.copyWith(
       fontWeight: FontWeight.bold,
-      color: Colors.black54,
+      color: Colors.black87,
     );
 
     return Container(
@@ -220,21 +218,16 @@ class ScoreContainer extends StatelessWidget {
           Column(
             children: [
               Text("Puntuación:", style: theme),
-              Text("$score", style: theme),
+              Text("$score pts.", style: theme),
             ],
           ),
 
-          Column(
-            children: [
-              Text("Intentos:", style: theme),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
 
-                children: [
-                  for (var i = 0; i < tries; i++)
-                    Icon(Icons.cancel, color: Colors.black54),
-                ],
-              ),
+            children: [
+              for (var i = 0; i < tries; i++)
+                Icon(Icons.cancel, color: Colors.black87),
             ],
           ),
         ],

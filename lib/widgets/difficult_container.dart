@@ -45,9 +45,8 @@ class DifficultContainer extends StatelessWidget{
           Text(
             description,
             textAlign: TextAlign.justify,
-            style: theme.textTheme.headlineSmall!.copyWith(
+            style: theme.textTheme.titleLarge!.copyWith(
               color: Colors.black54,
-              fontWeight: FontWeight.bold
             ),
           ),
 

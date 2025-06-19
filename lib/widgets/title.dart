@@ -47,7 +47,9 @@ class _MainTitleState extends State<MainTitle> with SingleTickerProviderStateMix
       
         child: Text(
           widget.text,
-          style: theme.textTheme.headlineMedium!.copyWith(
+          textAlign: TextAlign.center,
+          
+          style: theme.textTheme.titleLarge!.copyWith(
             color: theme.colorScheme.onPrimary,
             fontWeight: FontWeight.bold
           ),

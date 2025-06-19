@@ -12,7 +12,6 @@ class MainPage extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: theme.colorScheme.primary,
-
         leading: Text(""),
 
         title: Text(
